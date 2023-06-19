@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
+from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm
@@ -64,6 +67,24 @@ class PostDetail(View):
                 "comment_form": CommentForm()
             },
         )
+
+
+class PostCreateView(CreateView):
+    model = Post
+    template_name = 'post_create.html'
+    fields = '__all__'
+
+
+class PostUpdateView(UpdateView):
+    model = Post
+    template_name = 'post_update.html'
+
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = 'post_delete.html'
+    success_url = reverse_lazy('index.html')
+
 
 class PostLike(View):
 
