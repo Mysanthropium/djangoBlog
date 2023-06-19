@@ -73,6 +73,7 @@ class PostCreateView(CreateView):
     model = Post
     template_name = 'post_create.html'
     fields = '__all__'
+    success_url = '/'
 
 
 class PostUpdateView(UpdateView):
