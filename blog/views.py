@@ -79,12 +79,14 @@ class PostCreateView(CreateView):
 class PostUpdateView(UpdateView):
     model = Post
     template_name = 'post_update.html'
+    fields = ['title', 'slug', 'featured_image', 'excerpt', 'content']
+    success_url = '/'
 
 
-class PostDeleteView(DeleteView):
-    model = Post
-    template_name = 'post_delete.html'
-    success_url = reverse_lazy('index.html')
+# class PostDeleteView(DeleteView):
+#     model = Post
+#     template_name = 'post_delete.html'
+#     success_url = reverse_lazy('index.html')
 
 
 class PostLike(View):
