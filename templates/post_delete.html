@@ -6,19 +6,21 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-
-    <div class="container">
-        <h1>Delete Post</h1>
-        <br/><br/>
-        <h3>Delete: {{ post.title }}</h3>
-        <form method="post">
-            {% csrf_token %}
-            Are you sure you want to DELETE: <strong>{{ post.title }}?</strong>
+    {% if user.id == post.author.id %}
+        <div class="container">
+            <h1>Delete Post</h1>
             <br/><br/>
-            <button class="btn btn-primary">Delete</button>
-        </form>
-    </div>
-
+            <h3>Delete: {{ post.title }}</h3>
+            <form method="post">
+                {% csrf_token %}
+                Are you sure you want to DELETE: <strong>{{ post.title }}?</strong>
+                <br/><br/>
+                <button class="btn btn-primary">Delete</button>
+            </form>
+        </div>
+        {% else %}
+        You are not the owner of this post.
+    {% endif %}
 {% else %}
 
 You have to <a href="{% url 'account_login' %}">log in</a> to use this feature.
