@@ -4,6 +4,7 @@ from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.utils.text import slugify
 from .models import Post
 from .forms import CommentForm
 
@@ -70,8 +71,19 @@ class PostDetail(View):
 
 
 class PostCreateView(CreateView):
+    def form_valid(self, form):
+        form.instance.author_id = self.request.user.pk
+        form.instance.slug = slugify(form.instance.title)
+        return super().form_valid(form)
     model = Post
     template_name = 'post_create.html'
+    fields = ['title', 'featured_image', 'excerpt', 'content',]
+    success_url = '/'
+
+
+class EventCreateView(CreateView):
+    model = Post
+    template_name = 'create_event.html'
     fields = '__all__'
     success_url = '/'
 
