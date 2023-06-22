@@ -2,11 +2,21 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.forms import UserChangeForm
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.text import slugify
 from .models import Post
-from .forms import CommentForm
+from .forms import CommentForm, EditProfileForm
+
+
+class UserEditView(generic.UpdateView):
+    form_class = EditProfileForm
+    template_name = 'account/edit_profile.html'
+    success_url = '/'
+
+    def get_object(self):
+        return self.request.user
 
 
 class PostList(generic.ListView):
@@ -17,7 +27,6 @@ class PostList(generic.ListView):
 
 
 class PostDetail(View):
-
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -89,9 +98,13 @@ class EventCreateView(CreateView):
 
 
 class PostUpdateView(UpdateView):
+    def form_valid(self, form):
+        form.instance.author_id = self.request.user.pk
+        form.instance.slug = slugify(form.instance.title)
+        return super().form_valid(form)
     model = Post
     template_name = 'post_update.html'
-    fields = ['title', 'slug', 'featured_image', 'excerpt', 'content']
+    fields = ['title', 'featured_image', 'excerpt', 'content']
     success_url = '/'
 
 
