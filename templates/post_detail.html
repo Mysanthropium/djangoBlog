@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 {% load crispy_forms_tags %}
 
 <div class="masthead">
@@ -58,6 +60,7 @@
                         <!-- The number of likes goes before the closing strong tag -->
                         <span class="text-secondary">{{ post.number_of_likes }} </span>
                         </strong>
+                        <img src="{{ post.author.userprofile.profile_image.url }}" width=50 height=50 class="rounded-circle">
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
@@ -84,6 +87,11 @@
                 <div class="comments" style="padding: 10px;">
                     <p class="font-weight-bold">
                         <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
+                    {% if post.author.userprofile.profile_image %}
+                        <img src="{{ post.author.userprofile.profile_image.url }}" width=50 height=50 class="rounded-circle">
+                    {% else %}
+                        <img src="static/blog/images/default_profile_pic.png/" width=50 height=50 class="rounded-circle">
+                    {% endif %}
                         {{ comment.name }}
                         <span class=" text-muted font-weight-normal">
                             <!-- The comment's created date goes here -->
