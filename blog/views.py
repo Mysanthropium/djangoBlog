@@ -100,13 +100,6 @@ class PostCreateView(CreateView):
     success_url = '/'
 
 
-class EventCreateView(CreateView):
-    model = Post
-    template_name = 'create_event.html'
-    fields = '__all__'
-    success_url = '/'
-
-
 class PostUpdateView(UpdateView):
     def form_valid(self, form):
         form.instance.author_id = self.request.user.pk
