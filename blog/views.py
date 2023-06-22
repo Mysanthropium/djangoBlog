@@ -11,7 +11,11 @@ from .models import Post, UserProfile
 from .forms import CommentForm, EditProfileForm, PasswordChangedForm
 
 
-# class EditProfilePageView()
+class EditProfilePageView(generic.UpdateView):
+    model = UserProfile
+    template_name = 'account/edit_profile_page.html'
+    fields = ['profile_image', 'bio']
+    success_url = '/'
 
 
 class ProfilePageView(DetailView):
