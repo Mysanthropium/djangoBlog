@@ -7,8 +7,25 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.text import slugify
-from .models import Post
+from .models import Post, UserProfile
 from .forms import CommentForm, EditProfileForm, PasswordChangedForm
+
+
+# class EditProfilePageView()
+
+
+class ProfilePageView(DetailView):
+    model = UserProfile
+    template_name = 'account/user_profile.html'
+
+    def get_context_data(self, *args, **kwargs):
+        users = UserProfile.objects.all()
+        context = super(ProfilePageView, self).get_context_data(*args, **kwargs)
+
+        page_user = get_object_or_404(UserProfile, id=self.kwargs['pk'])
+
+        context["page_user"] = page_user
+        return context
 
 
 class PasswordsChangeView(PasswordChangeView):

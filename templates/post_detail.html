@@ -10,7 +10,8 @@
                 <!-- Post title goes in these h1 tags -->
                 <h1 class="post-title">{{ post.title }}</h1>
                 <!-- Post author goes before the | the post's created date goes after -->
-                <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
+                <a href="{% url 'show_profile_page' post.author.userprofile.id %}" class="post-subtitle">{{ post.author }}</a>
+                <p class="post-subtitle"> | {{ post.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <!-- The featured image URL goes in the src attribute -->
@@ -60,7 +61,9 @@
                         <!-- The number of likes goes before the closing strong tag -->
                         <span class="text-secondary">{{ post.number_of_likes }} </span>
                         </strong>
-                        <img src="{{ post.author.userprofile.profile_image.url }}" width=50 height=50 class="rounded-circle">
+                        <a href="{% url 'show_profile_page' post.author.userprofile.id %}">
+                            <img src="{{ post.author.userprofile.profile_image.url }}" width=50 height=50 class="rounded-circle">
+                        </a>
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
@@ -82,17 +85,20 @@
         <div class="col-md-8 card mb-4  mt-3 ">
             <h3>Comments:</h3>
             <div class="card-body">
-                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
+                {% if post.author.userprofile.profile_image %}
+                        <a href="{% url 'show_profile_page' post.author.userprofile.id %}">
+                            <img src="{{ post.author.userprofile.profile_image.url }}" width=50 height=50 class="rounded-circle">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'show_profile_page' post.author.userprofile.id %}">
+                            <img src="static/blog/images/default_profile_pic.png/" width=50 height=50 class="rounded-circle">
+                        </a>
+                    {% endif %}
                 {% for comment in comments %}
                 <div class="comments" style="padding: 10px;">
                     <p class="font-weight-bold">
                         <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-                    {% if post.author.userprofile.profile_image %}
-                        <img src="{{ post.author.userprofile.profile_image.url }}" width=50 height=50 class="rounded-circle">
-                    {% else %}
-                        <img src="static/blog/images/default_profile_pic.png/" width=50 height=50 class="rounded-circle">
-                    {% endif %}
-                        {{ comment.name }}
+                        <a href="{% url 'show_profile_page' post.author.userprofile.id %}" class="post-subtitle">{{ comment.name }}</a>
                         <span class=" text-muted font-weight-normal">
                             <!-- The comment's created date goes here -->
                             {{ comment.created_on }}
