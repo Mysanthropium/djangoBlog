@@ -2,12 +2,22 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.text import slugify
 from .models import Post
-from .forms import CommentForm, EditProfileForm
+from .forms import CommentForm, EditProfileForm, PasswordChangedForm
+
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangedForm
+    success_url = reverse_lazy('password_success')
+
+
+def password_success(request):
+    return render(request, 'account/password_success.html', {})
 
 
 class UserEditView(generic.UpdateView):
