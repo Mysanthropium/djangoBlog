@@ -85,20 +85,12 @@
         <div class="col-md-8 card mb-4  mt-3 ">
             <h3>Comments:</h3>
             <div class="card-body">
-                {% if post.author.userprofile.profile_image %}
-                        <a href="{% url 'show_profile_page' post.author.userprofile.id %}">
-                            <img src="{{ post.author.userprofile.profile_image.url }}" width=50 height=50 class="rounded-circle">
-                        </a>
-                    {% else %}
-                        <a href="{% url 'show_profile_page' post.author.userprofile.id %}">
-                            <img src="static/blog/images/default_profile_pic.png/" width=50 height=50 class="rounded-circle">
-                        </a>
-                    {% endif %}
                 {% for comment in comments %}
                 <div class="comments" style="padding: 10px;">
                     <p class="font-weight-bold">
                         <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-                        <a href="{% url 'show_profile_page' post.author.userprofile.id %}" class="post-subtitle">{{ comment.name }}</a>
+                        <a href="{% url 'show_profile_page' post.author.userprofile.id %}" class="post-subtitle">
+                            <img src="{{ userprofile.profile_image.url }}" width=50 height=50 class="rounded-circle">{{ comment.name }}</a>
                         <span class=" text-muted font-weight-normal">
                             <!-- The comment's created date goes here -->
                             {{ comment.created_on }}
@@ -116,7 +108,7 @@
                 <!-- For later -->
                 {% if commented %}
                 <div class="alert alert-success" role="alert">
-                    Your comment is awaiting approval
+                    You're comment has been sent!
                 </div>
                 {% else %}
                 {% if user.is_authenticated %}

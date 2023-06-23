@@ -45,15 +45,14 @@
                             Profile
                         </a>
                         <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="{% url 'show_profile_page' user.userprofile.id %}">Profile Page</a>
+                            {% if user.userprofile.id %}
+                            <li><a class="dropdown-item" href="{% url 'show_profile_page' user.userprofile.id %}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.userprofile.id %}">Manage Profile</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url 'create_profile_page' %}">Create a Profile Page</a></li>
+                            {% endif %}
                             </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'edit_profile_page' user.userprofile.id %}">Edit Profile Page</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'edit_profile' %}">Settings</a>
-                            </li>
+                            <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Account Settings</a></li>
                         </ul>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>

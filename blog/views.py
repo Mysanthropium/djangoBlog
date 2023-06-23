@@ -8,7 +8,18 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.text import slugify
 from .models import Post, UserProfile
-from .forms import CommentForm, EditProfileForm, PasswordChangedForm
+from .forms import CommentForm, EditProfileForm, PasswordChangedForm, ProfilePageForm
+
+
+class CreateProfilePageView(CreateView):
+    model = UserProfile
+    form_class = ProfilePageForm
+    template_name = "account/create_user_profile_page.html"
+    # fields = '__all__'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class EditProfilePageView(generic.UpdateView):
