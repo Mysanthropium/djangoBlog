@@ -9,7 +9,9 @@
             <div class="col-md-6 masthead-text">
                 <h1 class="post-title">{{ post.title }}</h1>
                 <!-- Post author and image -->
-                <a href="{% url 'show_profile_page' post.author.userprofile.id %}" class="post-subtitle">{{ post.author }}</a>
+                <a href="{% url 'show_profile_page' post.author.userprofile.id %}" class="post-subtitle">
+                    <img src="{{ post.author.userprofile.profile_image.url }}" width=50 height=50 class="rounded-circle">{{ post.author }}
+                </a>
                 <p class="post-subtitle"> | {{ post.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
@@ -42,7 +44,6 @@
                     </small>
                 </p>
                 <div class="row">
-
                     <div class="col-1">
                         <strong>
                             {% if user.is_authenticated %}
@@ -58,11 +59,8 @@
                             <span class="text-secondary"><i class="far fa-heart"></i></span>
                             {% endif %}
                         <!-- The number of likes goes before the closing strong tag -->
-                        <span class="text-secondary">{{ post.number_of_likes }} </span>
+                        <span class="text-secondary">{{ post.number_of_likes }}</span>
                         </strong>
-                        <a href="{% url 'show_profile_page' post.author.userprofile.id %}">
-                            <img src="{{ post.author.userprofile.profile_image.url }}" width=50 height=50 class="rounded-circle">
-                        </a>
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
