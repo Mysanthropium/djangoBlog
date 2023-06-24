@@ -1,14 +1,18 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.views.generic import TemplateView, ListView, DetailView
-from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.views.generic.edit import (
+    FormView, CreateView, UpdateView, DeleteView
+    )
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.text import slugify
 from .models import Post, UserProfile
-from .forms import CommentForm, EditProfileForm, PasswordChangedForm, ProfilePageForm
+from .forms import (
+    CommentForm, EditProfileForm, PasswordChangedForm, ProfilePageForm
+    )
 from cloudinary.models import CloudinaryField
 
 
@@ -35,7 +39,9 @@ class ProfilePageView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         users = UserProfile.objects.all()
-        context = super(ProfilePageView, self).get_context_data(*args, **kwargs)
+        context = super(
+            ProfilePageView, self
+                ).get_context_data(*args, **kwargs)
 
         page_user = get_object_or_404(UserProfile, id=self.kwargs['pk'])
 
@@ -128,7 +134,7 @@ class PostCreateView(CreateView):
         return super().form_valid(form)
     model = Post
     template_name = 'post_create.html'
-    fields = ['title', 'featured_image', 'excerpt', 'content',]
+    fields = ['title', 'featured_image', 'excerpt', 'content']
     success_url = '/'
 
 
@@ -158,5 +164,5 @@ class PostLike(View):
             post.likes.remove(request.user)
         else:
             post.likes.add(request.user)
-            
+
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
