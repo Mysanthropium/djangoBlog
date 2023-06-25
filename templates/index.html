@@ -14,6 +14,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="image-container">
+                                <!-- Placeholder image for blogs if not chosen -->
                                 {% if "placeholder" in post.featured_image.url %}
                                 <img class="card-img-top"
                                     src="https://netherlandsewell.com/wp-content/uploads/2016/06/map-placeholder.jpg">
@@ -27,6 +28,7 @@
                             <a href="{% url 'post_detail' post.slug %}" class="post-link">
                                 <h2 class="card-title">{{ post.title }}
                                     <small>
+                                        <!-- Check for user authentication if user can edit or delete blog posts -->
                                         {% if user.is_authenticated %}
                                             {% if user.id == post.author.id %}
                                                 <a href="{% url 'post_update' post.pk %}">(Edit)</a>

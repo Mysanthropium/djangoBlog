@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 
 class ProfilePageForm(forms.ModelForm):
+    # User profile page form
     class Meta:
         model = UserProfile
         fields = ('profile_image', 'bio')
@@ -14,12 +15,14 @@ class ProfilePageForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    # Comment form in blog posts
     class Meta:
         model = Comment
         fields = ('body',)
 
 
 class EditProfileForm(UserChangeForm):
+    # Edit settings form for email, first name, last name and password
     email = forms.EmailField(widget=forms.EmailInput(attrs={
         'class': 'form-control'
     }))
@@ -36,6 +39,7 @@ class EditProfileForm(UserChangeForm):
 
 
 class PasswordChangedForm(PasswordChangeForm):
+    # Change password form
     old_password = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control', 'type': 'password'
     }))

@@ -8,7 +8,7 @@
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
                 <h1 class="post-title">{{ post.title }}</h1>
-                <!-- Post author and image -->
+                <!-- Post author, date and time of creation and image -->
                 <a href="{% url 'show_profile_page' post.author.userprofile.id %}" class="post-subtitle">
                     <img src="{{ post.author.userprofile.profile_image.url }}" width=50 height=50
                         class="rounded-circle">{{ post.author }}
@@ -16,7 +16,7 @@
                 <p class="post-subtitle"> | {{ post.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-                <!-- The featured image URL goes in the src attribute -->
+                <!-- Placeholder image for posts if none is chosen by author -->
                 {% if "placeholder" in post.featured_image.url %}
                 <img src="https://netherlandsewell.com/wp-content/uploads/2016/06/map-placeholder.jpg" width="100%">
                 {% else %}
@@ -31,11 +31,11 @@
     <div class="row">
         <div class="col card mb-4  mt-3 left  top">
             <div class="card-body">
-                <!-- The post content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
+                <!-- safe | filter used inside template tags -->
                 <p class="card-text ">
                     {{ post.content | safe }}
                     <small>
+                        <!-- Check for user authentication if user can edit or delete blog post -->
                         {% if user.is_authenticated %}
                         {% if user.id == post.author.id %}
                         <a href="{% url 'post_update' post.pk %}">(Edit)</a>
@@ -47,6 +47,7 @@
                 <div class="row">
                     <div class="col-1">
                         <strong>
+                            <!-- Check if user is signed in to like and unlike posts -->
                             {% if user.is_authenticated %}
                             <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
                                 {% csrf_token %}
@@ -88,23 +89,22 @@
                 {% for comment in comments %}
                 <div class="comments" style="padding: 10px;">
                     <p class="font-weight-bold">
-                        <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
+                        <!-- The commenter's name goes here -->
                         {{ comment.name }}
                         <span class=" text-muted font-weight-normal">
-                            <!-- The comment's created date goes here -->
+                            <!-- The comment's created date and time goes here -->
                             {{ comment.created_on }}
                         </span> wrote:
                     </p>
                     <!-- The body of the comment goes before the | -->
                     {{ comment.body | linebreaks }}
                 </div>
-                <!-- Our for loop ends here -->
                 {% endfor %}
             </div>
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">
             <div class="card-body">
-                <!-- For later -->
+                <!-- Comment section with success alert -->
                 {% if commented %}
                 <div class="alert alert-success" role="alert">
                     You're comment has been sent!

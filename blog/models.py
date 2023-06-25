@@ -7,6 +7,7 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 
 class Post(models.Model):
+    # Create a blog post for logged in members
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
@@ -30,6 +31,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    # The comment model for date, time and auto approved comments
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=80)
@@ -46,6 +48,7 @@ class Comment(models.Model):
 
 
 class UserProfile(models.Model):
+    # The user profile model
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     bio = models.TextField()
     profile_image = CloudinaryField('image', null=True, blank=True)

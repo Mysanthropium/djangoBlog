@@ -22,7 +22,7 @@
 
 <body class="d-flex flex-column h-100 main-bg">
 
-    <!-- Navigation -->
+    <!-- Navigation burger icon with dropdown menu -->
 
     <nav class="navbar navbar-light" style="background-color: #5fbcff;">
         <div class="container-fluid">
@@ -45,6 +45,7 @@
                             Profile
                         </a>
                         <ul class="dropdown-menu">
+                            <!-- Check for user authentication to decide navigation links -->
                             {% if user.userprofile.id %}
                             <li><a class="dropdown-item" href="{% url 'show_profile_page' user.userprofile.id %}">Profile</a></li>
                             <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.userprofile.id %}">Manage Profile</a></li>

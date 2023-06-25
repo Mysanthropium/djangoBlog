@@ -17,6 +17,7 @@ from cloudinary.models import CloudinaryField
 
 
 class CreateProfilePageView(CreateView):
+    # For users to create their profile page
     model = UserProfile
     form_class = ProfilePageForm
     template_name = "account/create_user_profile_page.html"
@@ -27,6 +28,7 @@ class CreateProfilePageView(CreateView):
 
 
 class EditProfilePageView(generic.UpdateView):
+    # For users to edit their profile page
     model = UserProfile
     template_name = 'account/edit_profile_page.html'
     fields = ['profile_image', 'bio']
@@ -34,6 +36,7 @@ class EditProfilePageView(generic.UpdateView):
 
 
 class ProfilePageView(DetailView):
+    # The user profile page view
     model = UserProfile
     template_name = 'account/user_profile.html'
 
@@ -50,6 +53,7 @@ class ProfilePageView(DetailView):
 
 
 class PasswordsChangeView(PasswordChangeView):
+    # Passwords successfully changed view
     form_class = PasswordChangedForm
     success_url = reverse_lazy('password_success')
 
@@ -59,6 +63,7 @@ def password_success(request):
 
 
 class UserEditView(generic.UpdateView):
+    # User settings page for updating settings such as names and passwords
     form_class = EditProfileForm
     template_name = 'account/edit_profile.html'
     success_url = '/'
@@ -68,6 +73,7 @@ class UserEditView(generic.UpdateView):
 
 
 class PostList(generic.ListView):
+    # Blog posts for home page
     model = Post
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'index.html'
@@ -75,6 +81,7 @@ class PostList(generic.ListView):
 
 
 class PostDetail(View):
+    # Blog post detailed view
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -128,6 +135,7 @@ class PostDetail(View):
 
 
 class PostCreateView(CreateView):
+    # Create a blog post view
     def form_valid(self, form):
         form.instance.author_id = self.request.user.pk
         form.instance.slug = slugify(form.instance.title)
@@ -139,6 +147,7 @@ class PostCreateView(CreateView):
 
 
 class PostUpdateView(UpdateView):
+    # Edit blog post view
     def form_valid(self, form):
         form.instance.author_id = self.request.user.pk
         form.instance.slug = slugify(form.instance.title)
@@ -150,12 +159,14 @@ class PostUpdateView(UpdateView):
 
 
 class PostDeleteView(DeleteView):
+    # Delete blog post view
     model = Post
     template_name = 'post_delete.html'
     success_url = '/'
 
 
 class PostLike(View):
+    # Like and unlike blog posts view
 
     def post(self, request, slug):
         post = get_object_or_404(Post, slug=slug)
