@@ -84,25 +84,123 @@ I've learnt a lot by using this tool, I know there's much more to learn about wh
 #### Not logged in users:
 * Can read posts
 * Can create an account
+* Can visit blog post authors profile page
 
 #### Logged in users:
+* Can read posts
+* Can comment on posts
+* Can like/unlike posts
+* Can visit blog post authors profile page
+* Can create posts
+* Can update own posts
+* Can delete own posts
+* Can create profile page
+* Can add profile picture
+* Can add profile bio
+* Can edit profile page, profile picture and bio
+* Can manage account settings
+* Can add first name, last name and email
+* Can change password
 
+#### Restrictions:
+* Users can't access admin panel
+* Users can't access other users edit profile page
+* Users can't access other users account settings
 
 ### Features left to implement
-* Let the player choose a grid size and number of ships.
-* Play against the computer.
-* Add different ship sizes.
-* Let the player place their own ships.
+* Edit/delete users own comments
+* Search for other users profile
+* Create events
+* Plan meetups
+* Friend requests
+* More styling to the whole page
+
+### Screenshots of Travel With Me blog
+> Navigation bar
+![navbar](static/readme_images/navbar.jpg)
+
+> Open navigation bar icon as logged in user
+![opennavbar](static/readme_images/open_navbar.jpg)
+
+> Open dropdown profile as logged in user
+![dropdown](static/readme_images/dropdown_logged_in.jpg)
+
+> Open dropdown profile as new account
+![dropdownnewaccount](static/readme_images/navbar_dropdown_new_account.jpg)
+
+> Open navigation bar icon as NOT logged in user
+![opennavbarnotloggedin](static/readme_images/open_navbar_not_logged_in.jpg)
+
+> Blog posts
+![blogposts](static/readme_images/blog_page.jpg)
+
+> Detailed blog post as logged in user
+![detailedblogpost](static/readme_images/detailed_blog_post.jpg)
+
+> Detailed blog post as NOT logged in user
+![detailednotloggedinuser](static/readme_images/detailed_not_logged_in.jpg)
+
+> Footer
+![footer](static/readme_images/footer.jpg)
+
+> Sign in page
+![signin](static/readme_images/signin_page.jpg)
+
+> Sign out page
+![signoutpage](static/readme_images/signoutpage.jpg)
+
+> Register page
+![registerpage](static/readme_images/register_page.jpg)
+
+> Profile page
+![profilepage](static/readme_images/profile_page.jpg)
+
+> Create a profile page
+![createnewprofilepage](static/readme_images/createaprofilepage.jpg)
+
+> Create post page
+![createpostform](static/readme_images/createpostform.jpg)
+
+> Edit profile page
+![editprofilepage](static/readme_images/editprofilepage.jpg)
+
+> Edit settings page
+![editsettingspage](static/readme_images/editsettingspage.jpg)
+
+> Change password page
+![changepasswordpage](static/readme_images/changepasswordpage.jpg)
+
+> Mobile nav bar expanded
+
+![mobilenav](static/readme_images/mobile_nav_bar.jpg)
+
+[Back to top](#travel-with-me-blog)
 
 ## Technology Used
 ### Python
-* To create the application
+* To create the logic of this application
+
+### Django
+* To make use of its built in admin panel and extra features like models to make coding easier
+* Also used for Jinja templating
+
+### Bootstrap 5
+* To help out with styling the page
+
+### Cloudinary
+* To store images, static files
+
+### Font Awesome
+* For awesome icons and fonts
 
 ### Heroku
 * For deployment and hosting of the application
 
+### PostgreSQL
+* Used for storing data for this project
+
 ### GitHub
-* Used to store code
+* Used to store code and user stories for easier work
 
 ### Gitpod
 * The IDE of choice for the application
@@ -110,28 +208,131 @@ I've learnt a lot by using this tool, I know there's much more to learn about wh
 ### Git
 * Used for version control
 
-### Modules used
-* 'random' was used to randomize ship placements.
-* 'sys and os' was used to clear terminal.
+[Back to top](#travel-with-me-blog)
 
 ## Testing
-* The code is tested using [PEP8](https://pep8ci.herokuapp.com/)
-   * With the only warnings being in the ascii art boat image.
-
-![PEP8](assets/images/pep8.jpg)
-
 * Manual testing:
-   * Test start game function so it only accepts letter 'a'.
-   * Test enter ship row so it only accepts the correct values, else it lets you know and try again.
-   ![VALIDROW](assets/images/validrow.jpg)
+   * I decided to manually test this application using my user stories and my own documentation through google sheets.
 
-   * Test enter ship column so it only accepts the correct characters, else it lets you know and try again.
-   ![VALIDCOLUMN](assets/images/validcolumn.jpg)
-   
-   * Test the play again function so it only accepts the letter 'y', else sends message 'Thank you for playing!'.
+   > Navigation
+
+   ![navigationtest](static/readme_images/Navigation_accessibility.jpg)
+
+   > Account Management
+
+   ![accountmanagement](static/readme_images/accountmanagement.jpg)
+
+   > Security Tests
+
+   ![securitytests](static/readme_images/security_tests.jpg)
+
+### W3 HTML
+> base.html
+
+![base](static/readme_images/base.jpg)
+
+> edit_profile_page.html
+
+![edit_profile_page](static/readme_images/edit_profile_page.jpg)
+
+> edit_profile.html, 2 errors found on this page which isnt solved yet
+
+![edit_profile](static/readme_images/edit_profile_settings.jpg)
+
+> post_create.html
+
+![postcreate](static/readme_images/post_create.jpg)
+
+> post_delete.html
+
+![postdelete](static/readme_images/post_delete.jpg)
+
+> post_detail.html
+
+![postdetail](static/readme_images/post_detail.jpg)
+
+> post_update.html
+
+![postupdate](static/readme_images/post_update.jpg)
+
+> user_profile.html
+
+![userprofile](static/readme_images/user_profile.jpg)
+
+### W3 CSS
+
+![cssvalidation](static/readme_images/css.jpg)
+
+### PEP8
+> forms.py
+
+![forms](static/readme_images/forms.jpg)
+
+> models.py
+
+![models](static/readme_images/models.jpg)
+
+> urls.py
+
+![urls](static/readme_images/urls.jpg)
+
+> views.py
+
+![views](static/readme_images/views.jpg)
+
+[Back to top](#travel-with-me-blog)
+
+## Lighthouse testing
+### Desktop:
+
+> base
+
+![base.desktop](static/readme_images/base.desktop.jpg)
+
+> edit_settings
+
+![edit_settings](static/readme_images/edit_settings.jpg)
+
+> manage_profile
+
+![manage_profile](static/readme_images/manage_profile.jpg)
+
+> post_detail
+
+![post_detail](static/readme_images/post_detail.desktop.jpg)
+
+> user_profile
+
+![userprofile](static/readme_images/userprofile.jpg)
+
+### Mobile:
+
+> base
+
+![base.mobile](static/readme_images/base.mobile.jpg)
+
+> edit_settings
+
+![edit_settings](static/readme_images/edit_settings.mobile.jpg)
+
+> manage_profile
+
+![manage_profile](static/readme_images/manage_profile.mobile.jpg)
+
+> post_detail
+
+![post_detail](static/readme_images/post_detail.mobile.jpg)
+
+> user_profile
+
+![user_profile](static/readme_images/userprofile.mobile.jpg)
+
+[Back to top](#travel-with-me-blog)
 
 ### Bugs and issues
-* There's an issue in the ascii art, resulting in warnings in PEP8.
+* Bugs found in edit_profile.html, not solved.
+* Issue found where default profile image isnt working.
+* Issue found where date and time in "last updated" on profile page isnt working properly.
 
 ## Deployment
 ### Version Control
@@ -145,17 +346,42 @@ Using Heroku for app deployment.
 * Create a new app on your dashboard.
 * Navigate to "Settings" in your new app.
 * Using the "Config Vars" add PORT to KEY, and 8000 to its VALUE.
-* Install the buildpacks needed for this project. In this order!
-   * Python
-   * node.js
-* Then navigate to deploy section and choose GitHub.
-* Connect to your GitHub repository by searching for your repository name.
-* Using "automatic" deployment, deploys your commits to Heroku.
-* Now we can click the "App" button in the top right corner to run our application.
+* Add PostreSQL as my database.
+* Go back to "Config Vars" and add DATABASE_URL and copy the url you got from your PostgreSQL dashboard.
+* Create a new file in your workspace called "env.py".
+* Import the os library and set environment variable to DATABASE_URL to the address from Heroku.
+* Add a secret key to the app using os.environ["SECRET_KEY"]="secret key here"
+* Add this secret key and add it to config vars in the Heroku app settings.
+* In settings.py in the django app import Path from pathlib, os and dj_database_url.
+* Insert the line if os.path.isfile("env.py"): import env
+* Navigate down and find the SECRET_KEY, replace the key with SECRET_KEY = os.environ.get('SECRET_KEY')
+* Replace the database section with DATABASES = { 'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+* Go to terminal in your workspace and migrate the models to the new database connection.
+
+### Cloudinary
+* Log in or create a Cloudinary account.
+* Copy your CLOUDINARY_URL.
+* Navigate to your env.py and add os.environ["CLOUDINARY_URL"] = "add cloudinary_url here".
+* Navigate to Heroku settings again and add CLOUDINARY_URL in config vars.
+* Go to settings.py and add cloudinary library to INSTALLED_APPS. cloudinary_storage, django.contrib.staticfiles and cloudinary IN THIS ORDER.
+* Add static files settings to settings.py: url, storage path, directory path, root path, media url and default file storage.
+* Link the file to the templates directory in Heroku TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates').
+* Change templates directory to TEMPLATES_DIR - 'DIRS': [TEMPLATES_DIR].
+* Add your Heroku app url to ALLOWED_HOSTS.
+* Create three new folders media, static and templates
+* Create a Procfile
+* In the Procfile, add web: guincorn project name here.wsgi
+* Then push all changes to GitHub.
+* Deploy to Heroku manually in Heroku deploy tab and watch it the first time, then you can add automatic uploads.
+
+[Back to top](#travel-with-me-blog)
 
 ## Credits
 ### [YouTube](https://www.youtube.com/)
 * For having great learning content.
+
+### [Django](https://www.djangoproject.com/)
+* For built in admin panel and additional useful features.
 
 ### [Python](python.org)
 * For beginner friendly tutorials.
@@ -163,15 +389,18 @@ Using Heroku for app deployment.
 ### [GitHub](docs.github.com)
 * For learning how to document a nice looking readme.
 
+### [Bootstrap](https://getbootstrap.com/)
+* For helping me style the project.
+
+### [Cloudinary](https://cloudinary.com/?&utm_campaign=1329&utm_content=instapagelogocta-selfservetest)
+* For storing media files
+
 ## Contents and resources
 ### [YouTube](https://www.youtube.com/)
 * Can't show YouTube enough appreciation.
 
-### [ASCII Art](https://www.asciiart.eu/)
-* For creating my boat art.
-
-### Knowledge Mavens
-* Used [this](https://github.com/gbrough/battleship/blob/main/single_player.py) repository to build the functions in the game.
+### [John Elder](https://www.youtube.com/@Codemycom)
+* For well made tutorials that's easy to understand.
 
 ### Code Institute
 * This project is a part of the course content.
@@ -183,6 +412,9 @@ Using Heroku for app deployment.
 ### Adeye Adegbenga
 * My mentor at Code Institute, giving me good and helpful feedback.
 
+### Andreas Karlsson
+* A fellow classmate who's always there to help. Definietly worth mentioning.
 
-[Back to Top of page](#battleships)
+
+[Back to top](#travel-with-me-blog)
 
