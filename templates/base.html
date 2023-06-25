@@ -1,8 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" class="h-100">
-{% load static %}
+
 <head>
-    <meta charset="UTF-8">
+    <title>Travel With Me Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -16,7 +17,7 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
         </script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Travel With Me Blog</title>
+    
 
 </head>
 
@@ -26,7 +27,7 @@
 
     <nav class="navbar navbar-light" style="background-color: #5fbcff;">
         <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}"><span class="brand badge"><h1>Travel With Me</h1></span></a>
+                <a class="navbar-brand" href="{% url 'home' %}"><span class="brand badge">Travel With Me</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -40,25 +41,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'post_create' %}">Create Post</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Profile
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- Check for user authentication to decide navigation links -->
-                            {% if user.userprofile.id %}
-                            <li><a class="dropdown-item" href="{% url 'show_profile_page' user.userprofile.id %}">Profile</a></li>
-                            <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.userprofile.id %}">Manage Profile</a></li>
-                            {% else %}
-                            <li><a class="dropdown-item" href="{% url 'create_profile_page' %}">Create a Profile Page</a></li>
-                            {% endif %}
-                            </li>
-                            <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Account Settings</a></li>
-                        </ul>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                        </li>
-                    </li>
+                <!-- from here -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Profile
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- Check for user authentication to decide navigation links -->
+                        {% if user.userprofile.id %}
+                        <li><a class="dropdown-item" href="{% url 'show_profile_page' user.userprofile.id %}">Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.userprofile.id %}">Manage Profile</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" href="{% url 'create_profile_page' %}">Create a Profile Page</a></li>
+                        {% endif %}
+                        <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Account Settings</a></li>
+                        <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                    </ul>
+                </li>
+                <!-- To here -->
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
@@ -102,7 +102,7 @@
             <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square ms-3"></i></a>
             <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter-square ms-3"></i></a>
             <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram-square ms-3"></i></a>
-            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube-square ms-3"></i></p></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube-square ms-3"></i></a>
     </footer>
     <script>
         setTimeout(function () {

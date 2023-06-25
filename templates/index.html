@@ -17,29 +17,28 @@
                                 <!-- Placeholder image for blogs if not chosen -->
                                 {% if "placeholder" in post.featured_image.url %}
                                 <img class="card-img-top"
-                                    src="https://netherlandsewell.com/wp-content/uploads/2016/06/map-placeholder.jpg">
+                                    src="https://netherlandsewell.com/wp-content/uploads/2016/06/map-placeholder.jpg" alt="image">
                                 {% else %}
-                                <img class="card-img-top" src=" {{ post.featured_image.url }}">
+                                <img class="card-img-top" src=" {{ post.featured_image.url }}" alt="image">
                                 {% endif %}
                                 <div class="image-flash" style="background-color: #5fbcff;">
                                     <p class="author">Author: {{ post.author }}</p>
                                 </div>
                             </div>
                             <a href="{% url 'post_detail' post.slug %}" class="post-link">
-                                <h2 class="card-title">{{ post.title }}
-                                    <small>
-                                        <!-- Check for user authentication if user can edit or delete blog posts -->
-                                        {% if user.is_authenticated %}
-                                            {% if user.id == post.author.id %}
-                                                <a href="{% url 'post_update' post.pk %}">(Edit)</a>
-                                                <a href="{% url 'post_delete' post.pk %}">(Delete)</a>
-                                            {% endif %}
-                                        {% endif %}
-                                    </small>
-                                </h2>
+                                <h2 class="card-title">{{ post.title }}</h2>
                                 <p class="card-text">{{ post.excerpt }}</p>
                             </a>
-                            <hr />
+                            <small>
+                                <!-- Check for user authentication if user can edit or delete blog posts -->
+                                {% if user.is_authenticated %}
+                                    {% if user.id == post.author.id %}
+                                        <a href="{% url 'post_update' post.pk %}">(Edit)</a>
+                                        <a href="{% url 'post_delete' post.pk %}">(Delete)</a>
+                                    {% endif %}
+                                {% endif %}
+                            </small>
+                            <hr>
                             <p class="card-text text-muted h6">{{ post.created_on}} <i class="far fa-heart"></i>
                                 {{ post.number_of_likes }}</p>
                         </div>
