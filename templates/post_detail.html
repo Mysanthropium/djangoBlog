@@ -11,16 +11,16 @@
                 <!-- Post author, date and time of creation and image -->
                 <a href="{% url 'show_profile_page' post.author.userprofile.id %}" class="post-subtitle">
                     <img src="{{ post.author.userprofile.profile_image.url }}" width=50 height=50
-                        class="rounded-circle">{{ post.author }}
+                        class="rounded-circle" alt="image">{{ post.author }}
                 </a>
                 <p class="post-subtitle"> | {{ post.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <!-- Placeholder image for posts if none is chosen by author -->
                 {% if "placeholder" in post.featured_image.url %}
-                <img src="https://netherlandsewell.com/wp-content/uploads/2016/06/map-placeholder.jpg" width="100%">
+                <img src="https://netherlandsewell.com/wp-content/uploads/2016/06/map-placeholder.jpg" alt="image">
                 {% else %}
-                <img src=" {{ post.featured_image.url }}" width="100%">
+                <img src=" {{ post.featured_image.url }}" alt="image">
                 {% endif %}
             </div>
         </div>
@@ -46,25 +46,23 @@
                 </p>
                 <div class="row">
                     <div class="col-1">
-                        <strong>
-                            <!-- Check if user is signed in to like and unlike posts -->
-                            {% if user.is_authenticated %}
-                            <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
-                                {% csrf_token %}
-                                {% if liked %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i
-                                        class="fas fa-heart"></i></button>
-                                {% else %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i
-                                        class="far fa-heart"></i></button>
-                                {% endif %}
-                            </form>
+                        <!-- Check if user is signed in to like and unlike posts -->
+                        {% if user.is_authenticated %}
+                        <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
+                            {% csrf_token %}
+                            {% if liked %}
+                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i
+                                    class="fas fa-heart"></i></button>
                             {% else %}
-                            <span class="text-secondary"><i class="far fa-heart"></i></span>
+                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i
+                                    class="far fa-heart"></i></button>
                             {% endif %}
-                            <!-- The number of likes goes before the closing strong tag -->
-                            <span class="text-secondary">{{ post.number_of_likes }}</span>
-                        </strong>
+                        </form>
+                        {% else %}
+                        <span class="text-secondary"><i class="far fa-heart"></i></span>
+                        {% endif %}
+                        <!-- The number of likes goes before the closing strong tag -->
+                        <span class="text-secondary">{{ post.number_of_likes }}</span>
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}

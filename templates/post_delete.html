@@ -9,12 +9,12 @@
     {% if user.id == post.author.id %}
         <div class="container">
             <h1>Delete Post</h1>
-            <br/><br/>
+            <br><br>
             <h3>Delete: {{ post.title }}</h3>
             <form method="post">
                 {% csrf_token %}
                 Are you sure you want to DELETE: <strong>{{ post.title }}?</strong>
-                <br/><br/>
+                <br><br>
                 <button class="btn btn-secondary">Delete</button>
             </form>
         </div>
