@@ -77,6 +77,7 @@ I've learnt a lot by using this tool, I know there's much more to learn about wh
 2. [Plan meetups](https://github.com/users/Mysanthropium/projects/2/views/1?pane=issue&itemId=31679745)
 3. [Search for other members](https://github.com/users/Mysanthropium/projects/2/views/1?pane=issue&itemId=30776745)
 4. [Friend requests](https://github.com/users/Mysanthropium/projects/2/views/1?pane=issue&itemId=31679757)
+5. [Add links to profile pages in comment section](https://github.com/users/Mysanthropium/projects/2/views/1?pane=issue&itemId=31708192)
 
 [Back to top](#travel-with-me-blog)
 
@@ -113,6 +114,7 @@ I've learnt a lot by using this tool, I know there's much more to learn about wh
 * Create events
 * Plan meetups
 * Friend requests
+* Add links to profile pages in comment section
 * More styling to the whole page
 
 ### Screenshots of Travel With Me blog
